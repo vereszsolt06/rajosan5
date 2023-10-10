@@ -1,0 +1,635 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Open+Sans:wght@400;500;600&family=Poppins:wght@400;500;600&display=swap');
+
+/* ========== REUSABLE ========== */
+:root{
+    --primary-color: #474448;
+    --secondary-color: #706F6F;
+    --text-color: #B0B5B3;
+    --title-color: #F1F0EA;
+    --white-color: #fff;
+
+    --success: #0ABF30;
+    --error: #E24D4C;
+    --warning: #E9BD0C;
+    --info: #3498DB;
+
+    --font-family: 'Poppins', sans-serif;
+
+    --font-size-1: 38px;
+    --font-size-2: 32px;
+    --font-size-3: 24px;
+    --font-size-4: 18px;
+
+    --font-weight-400: 400;
+    --font-weight-500: 500;
+    --font-weight-600: 600;
+
+    --transition-1: 0.25s ease;
+    --transition-2: 0.5s ease-in-out;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family), Helvetica, sans-serif;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-text-select: none;
+    -webkit-user-select: none;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+    background: var(--primary-color);
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.container{
+    max-width: 1024px;
+    height: 100%;
+    margin-inline: 1.5rem;
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+.section-title{
+    position: relative;
+    text-align: center;
+    font-size: var(--font-size-1);
+    font-weight: var(--font-weight-600);
+    color: var(--title-color);
+    margin: 1.5rem 0 1.5rem 1.5rem;
+}
+
+.horizontal-rule{
+    max-width: 80%;
+    margin: 0 auto;
+    border: 1px solid var(--text-color);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* ========== ACTIVE SECTION ========== */
+section{
+    display: none;
+}
+
+section.active,
+div.active{
+    display: block;
+    animation: fade 0.5s ease backwards;
+}
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar{
+    width: 0.6rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color);
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 0.5rem;
+    background-color: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: var(--text-color);
+}
+
+/* ========== HOME ========== */
+.home > p{
+    position: relative;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 3rem;
+    letter-spacing: 4px;
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--title-color), var(--text-color), var(--title-color));
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-clip: initial;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+    animation: animate 3s linear infinite;
+}
+
+@keyframes animate{
+    0%{
+        background-position: -500%;
+    }
+    100%{
+        background-position: 500%;
+    }
+}
+
+/* ========== PLAYER SELECTOR ========== */
+.player-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3.5rem;
+    margin-top: 2.5rem;
+}
+
+.player-input{
+    position: relative;
+    width: 250px;
+}
+
+.player-input input{
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--secondary-color);
+    background: var(--primary-color);
+    color: var(--title-color);
+    font-size: var(--font-size-3);
+    border-radius: 5px;
+    outline: none;
+}
+
+.player-input span{
+    position: absolute;
+    left: calc(50% - 75px);
+    padding: 10px;
+    pointer-events: none;
+    font-size: var(--font-size-3);
+    color: var(--text-color);
+    text-transform: uppercase;
+    transition: var(--transition-1);
+}
+
+.player-input input:valid ~ span,
+.player-input input:focus ~ span{
+    color: var(--title-color);
+    transform: translateY(-18px);
+    font-size: var(--font-size-3);
+    padding: 0 10px;
+    background: var(--primary-color);
+    border-left: 1px solid var(--title-color);
+    border-right: 1px solid var(--title-color);
+}
+
+.player-input input:valid,
+.player-input input:focus{
+    border: 1px solid var(--title-color);
+}
+
+.player-input input::-webkit-outer-spin-button,
+.player-input input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.button{
+    display: grid;
+    place-items: center;
+    height: 60px;
+    width: 150px;
+    font-size: var(--font-size-4);
+    background: var(--secondary-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition-1);
+}
+
+.button:hover{
+    background: var(--title-color);
+    color: var(--primary-color);
+}
+
+.player-input-err{
+    border: 1px solid #e91e63 !important;
+    animation: bounce 0.5s cubic-bezier(.175, .885, .32, 1.275);
+}
+
+@keyframes bounce{
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(20px);
+    }
+    50%{
+        transform: translateX(-20px);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+/* ========== BOARD ========== */
+.reset-game{
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    font-size: var(--font-size-4);
+    font-weight: var(--font-weight-400);
+    color: var(--title-color);
+    cursor: pointer;
+}
+
+.game-container{
+    display: flex;
+    gap: 4.5rem;
+}
+
+.data-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 3rem;
+}
+
+.game-board{
+    position: relative;
+    width: 480px;
+    height: 720px;
+    background-image: url(/Assets/Board/board.png);
+    background-size: 100%;
+    border-radius: 3px;
+}
+
+.notation{
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-5%, 2.6%);
+}
+
+.notation text{
+    fill: var(--title-color);
+    opacity: 0.7;
+    font-size: 2.5px;
+    font-weight: var(--font-weight-500);
+}
+
+.player-component{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 100%;
+    gap: 1.2rem;
+}
+
+.player-avatar{
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.3rem;
+    max-width: 75px;
+    max-height: 75px;
+}
+
+.player-name{
+    color: var(--title-color);
+    font-size: var(--font-size-4);
+}
+
+.player-name span{
+    position: relative;
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-left: 0.5rem;
+}
+
+.player-name span::before{
+    content: '+';
+    margin-right: 0.15rem;
+}
+
+.player-captured{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    height: 1.5rem;
+    width: 14rem;
+}
+
+.player-captured > span{
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: var(--text-color);
+    border-radius: 0.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.round-counter p{
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-500);
+    color: var(--text-color);
+}
+
+.round-counter p span{
+    color: var(--title-color);
+}
+
+.player-ability-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.player-ability{
+    height: 45px;
+    width: 45px;
+    cursor: pointer;
+}
+
+.player-ability .spell{
+    height: 100%;
+    width: 100%;
+    background-color: #779954;
+    border-radius: 0.3rem;
+    padding: 0.2rem;
+    overflow: hidden;
+}
+
+.player-ability .spell.inactive{
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.player-ability .spell-image{
+    width: 100%;
+    height: 100%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+[data-name="Fagyasztás"]{
+    background-image: url(/Assets/Ability/freeze.png); /*Forrás: https: //thenounproject.com/browse/icons/term/freeze/ */
+}
+
+[data-name="Joker"]{
+    background-image: url(/Assets/Ability/joker.png); /* Forrás: https: //thenounproject.com/icon/joker-3370729/ */
+}
+
+/* ========== WHITE CAPTURED FIGURES ========== */
+/* Az összes felhasznált bábu és a játéktábla a chess.com hivatalos oldaláról származik */
+[data-piece="wp"]{
+    background-image: url(/Assets/Figures/wp.png);
+}
+
+[data-piece="wr"]{
+    background-image: url(/Assets/Figures/wr.png);
+}
+
+[data-piece="wn"]{
+    background-image: url(/Assets/Figures/wn.png);
+}
+
+[data-piece="wb"]{
+    background-image: url(/Assets/Figures/wb.png);
+}
+
+[data-piece="wq"]{
+    background-image: url(/Assets/Figures/wq.png);
+}
+
+[data-piece="wk"]{
+    background-image: url(/Assets/Figures/wk.png);
+}
+
+/* ========== BLACK CAPTURED FIGURES ========== */
+[data-piece="bp"]{
+    background-image: url(/Assets/Figures/bp.png);
+}
+
+[data-piece="br"]{
+    background-image: url(/Assets/Figures/br.png);
+}
+
+[data-piece="bn"]{
+    background-image: url(/Assets/Figures/bn.png);
+}
+
+[data-piece="bb"]{
+    background-image: url(/Assets/Figures/bb.png);
+}
+
+[data-piece="bq"]{
+    background-image: url(/Assets/Figures/bq.png);
+}
+
+[data-piece="bk"]{
+    background-image: url(/Assets/Figures/bk.png);
+}
+
+/* ========== BOARD FIGURES ========== */
+.piece{
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    background-size: 100%;
+    cursor: grab;
+    height: 8.333333333333%;
+    width: 12.5%;
+    z-index: 2;
+}
+
+.highlight{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12.5%;
+    height: 8.333333333333%;
+    background-color: rgba(255, 255, 51);
+    opacity: 0;
+}
+
+.hover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12.5%;
+    height: 8.333333333333%;
+    background: none;
+    border: 3px inset var(--text-color);
+    opacity: 0;
+}
+
+.hint{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12.5%;
+    height: 8.333333333333%;
+    border-radius: 50%;
+    background-clip: content-box;
+    padding: 4.2%;
+    background-color: rgba(0,0,0,0.1);
+}
+
+[data-hint="capture-hint"]{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12.5%;
+    height: 8.333333333333%;
+    border-radius: 50%;
+    background-clip: content-box;
+    border: 5px solid rgba(0, 0, 0, .1);
+    z-index: 100;
+}
+
+/* ========== NOTIFICATIONS ========== */
+.notifications{
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+}
+
+.notifications :where(.toast, .column){
+    display: flex;
+    align-items: center;
+}
+
+.notifications .toast{
+    position: relative;
+    width: 400px;
+    list-style: none;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--secondary-color);
+    border-left: 0.25rem solid var(--title-color);
+    color: var(--title-color);
+    justify-content: space-between;
+    overflow: hidden;
+    transition: var(--transition-2);
+}
+
+.notifications .toast::before{
+    position: absolute;
+    content: '';
+    height: 3px;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    animation: fade 4s linear forwards;
+}
+
+@keyframes fade{
+    100%{
+        right: 100%;
+    }
+}
+
+.toast.success::before{
+    background: var(--success);
+}
+
+.toast.success .column i{
+    color: var(--success);
+}
+
+.toast.error::before{
+    background: var(--error);
+}
+
+.toast.error .column i{
+    color: var(--error);
+}
+
+.toast.warning::before{
+    background: var(--warning);
+}
+
+.toast.warning .column i{
+    color: var(--warning);
+}
+
+.toast.info::before{
+    background: var(--info);
+}
+
+.toast.info .column i{
+    color: var(--info);
+}
+
+.toast .column i{
+    font-size: var(--font-size-3);
+}
+
+.toast .column span{
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+.toast i:last-child{
+    cursor: pointer;
+}
+
+/* ========== OUTCOME ========== */
+.outcome{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
+}
+
+.outcome-data{
+    height: 650px;
+    width: 650px;
+    background: var(--primary-color);
+    border-radius: 1rem;
+}
+
+/* ========== MEDIA QUERY ========== */
+@media screen and (max-width: 800px){
+    section{
+        display: none !important;
+    }
+    body::before {
+        content: "Ez a felbontás nem támogatott! :(";
+        font-size: var(--font-size-1);
+        font-weight: var(--font-weight-600);
+        color: var(--title-color);
+        text-align: center;
+        display: block;
+        padding: 20px;
+    }
+}
